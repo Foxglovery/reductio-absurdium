@@ -101,7 +101,15 @@ Console.WriteLine(greeting);
 string choice = null;
 while (choice != "0")
 {
-    Console.WriteLine(@"Intention is everything.
+    Console.WriteLine(@"
+    ,.   .                 .                      .-,--.       .         .        
+   / |   |-. ,-. . . ,-. ,-| . . . ,-,-.   ,.      `|__/ ,-. ,-| . . ,-. |- . ,-. 
+  /~~|-. | | `-. | | |   | | | | | | | |   >-:,     | \  |-' | | | | |   |  | | | 
+,'   `-' `-' `-' `-' '   `-' ' `-' ' ' '   `-'`   `-'  ` `-' `-' `-' `-' `' ' `-' 
+                                                                                  
+                                                                                  
+
+Intention is everything.
 Choose an Option:
 0. Exit
 1. Display Items
@@ -147,6 +155,7 @@ Press Any Key To Return To Your Realm");
 }
 void ListAllItems()
 {
+    Console.Clear();
     int counter = 0;
     Console.WriteLine("These are the items currently in the shop:");
     foreach (Product product in products)
@@ -155,6 +164,9 @@ void ListAllItems()
         string result = ProductDetails(product, counter);
         Console.WriteLine(result);
     }
+        Console.WriteLine("Press Any Key To Continue");
+        Console.ReadKey();
+        Console.Clear();
 }
 
 void PostItem()
@@ -213,6 +225,7 @@ Press Any Key To Be Whisked Away...");
         Console.Clear();
 
         //Step 3 - Price
+        // ask your question
         Console.WriteLine("Tell me how much your item costs:");
         while (true)
         {
@@ -234,7 +247,7 @@ Press Any Key To Be Whisked Away...");
             }
             else if (decimal.Parse(userInput) < 0)
             {
-                Console.WriteLine(@"Prices may not be subzero.
+                Console.WriteLine(@"Prices may NOT be subzero.
                 Who do you think you are?");
             }
             else
@@ -266,7 +279,7 @@ Press Any Key To Be Whisked Away...");
                 Console.ReadKey();
                 Console.Clear();
                 return;
-            }
+            }// tests the input to be a number and saves output in new variable
             else if (int.TryParse(userInput, out int inputNumber) && inputNumber > 0 && inputNumber <= productTypes.Count)
             {
                 chosenType = inputNumber - 1;
